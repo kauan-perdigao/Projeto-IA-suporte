@@ -15,8 +15,8 @@ from dotenv import load_dotenv
 project_path = Path(__file__).resolve().parent
 load_dotenv(project_path / ".env")
 
-st.set_page_config(page_title="Atendimento SafeBank 🤖", page_icon="🤖")
-st.title("Atendimento SafeBank")
+st.set_page_config(page_title="Atendimento")
+st.title("Atendimento")
 
 id_model = "openai/gpt-oss-20b"
 temperature = 0.7
@@ -166,7 +166,7 @@ def chat_llm(rag_chain, input):
 
   return res
 
-input = st.chat_input("Digite sua mensagem aqui...")
+input = st.chat_input("Digite sua mensagem...")
 
 if "chat_history" not in st.session_state:
   st.session_state.chat_history = [
@@ -189,7 +189,7 @@ if input is not None:
     st.markdown(input)
 
   with st.chat_message("AI"):
-    with st.spinner("Um momento, estou processando a informação..."):
+    with st.spinner("Processando..."):
       if st.session_state.retriever is None:
         st.session_state.retriever = config_retriever(project_path)
       rag_chain = config_rag_chain(llm, st.session_state.retriever)
